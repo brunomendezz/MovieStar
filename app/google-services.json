@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "313603419743",
+    "project_id": "moviestar-3cf79",
+    "storage_bucket": "moviestar-3cf79.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313603419743:android:ea32e2be0d0690f6baf5ea",
+        "android_client_info": {
+          "package_name": "com.prueba1.empresatelefoniaandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313603419743-51qs93akpg3p925s301etlbtd6a6q8n2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prueba1.empresatelefoniaandroid",
+            "certificate_hash": "1b5ef851cc150a9d7bc23c38d0b2c7aeb4ae4bdd"
+          }
+        },
+        {
+          "client_id": "313603419743-hc9pas76qigfa4sog6g3rdjqdfs4ho1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA9Vym_RzYyTs4XO9KtL4IYkuMkIQefJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313603419743-hc9pas76qigfa4sog6g3rdjqdfs4ho1h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
