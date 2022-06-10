@@ -222,6 +222,8 @@ class MainActivity : AppCompatActivity() {
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
+         //   .setLogo(R.drawable.my_great_logo) // Set logo drawable
+            .setTheme(com.firebase.ui.auth.R.style.Base_Theme_MaterialComponents_Light_DarkActionBar) // Set theme
             .build()
         signInLauncher.launch(signInIntent)
         // [END auth_fui_create_intent]

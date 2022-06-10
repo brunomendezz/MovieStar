@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/imageClient"
-        android:layout_width="64dp"
-        android:layout_height="72dp"
+        android:layout_width="52dp"
+        android:layout_height="54dp"
         android:background="@drawable/perfil"
         android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
