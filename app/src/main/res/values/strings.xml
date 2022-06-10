@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">EmpresaTelefoniaAndroid</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="registrar">registrar</string>
+    <string name="moviestar">MovieStar</string>
+    <string name="complete_los_datos_por_favor">Complete los datos por favor.</string>
+    <string name="idabuscar" />
+    <string name="buscar" />
+    <string name="ingrese_id_del_cliente">INGRESE ID DEL CLIENTE</string>
+    <string name="botonbuscar">buscar</string>
+    <string name="datos_del_cliente">Datos del cliente.</string>
+    <string name="volver">Volver</string>
+    <string name="salir">Salir</string>
+    <string name="consultar_costo_total_de_los_clientes">Consultar costo total de los clientes</string>
+    <string name="consultar_costo_total_de_un_cliente">Consultar costo total de un cliente.</string>
+    <string name="agregar_un_cliente">Agregar un cliente.</string>
+    <string name="qu_acci_n_desea_realizar">¿Qué acción desea realizar?</string>
+    <string name="fechaDeAlta">Fecha</string>
+    <string name="codigoCliente">Codigo</string>
+    <string name="nombreCompleto">Nombre</string>
+    <string name="el_costo_total_del_cliente_es">El costo total del cliente es: $</string>
+    <string name="cerrarsesion">"Cerrar sesion "</string>
+</resources>
