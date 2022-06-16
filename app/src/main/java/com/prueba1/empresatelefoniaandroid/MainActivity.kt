@@ -32,23 +32,6 @@ class MainActivity : AppCompatActivity() {
 
 // OPCION AGREGAR CLIENTE
 
-
-/*       BOTON DE CRASHLYTICS
-        val crashButton = Button(this)
-        crashButton.text = "Test Crash"
-        crashButton.setOnClickListener {
-            throw RuntimeException("Test Crash")
-
-        }
-
-        addContentView(
-            crashButton, ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
-*/
-
         mainBinding.agregarCliente.setOnClickListener {
             val addClientBinding = FragmentAgregarClienteBinding.inflate(layoutInflater)
             setContentView(addClientBinding.root)

@@ -35,8 +35,8 @@ class Adapter(private val clients: List<Client>):RecyclerView.Adapter<Adapter.Cl
         fun render(client: Client){
 
 
-           binding.nombrecompleto.text = "${client.nombre_cliente} ${client.apellido_cliente}"
-            binding.fechadealta.text = client.fecha_de_alta_cliente
+           binding.nombrecompleto.text = "${client.nombre} ${client.apellido}"
+            binding.fechadealta.text = client.fecha_de_alta
             binding.codigodecliente.text = client.codigo_cliente.toString()
 
 
