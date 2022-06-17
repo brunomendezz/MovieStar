@@ -32,5 +32,10 @@
     <string name="codigoCliente">Codigo</string>
     <string name="nombreCompleto">Nombre</string>
     <string name="el_costo_total_del_cliente_es">El costo total del cliente es: $</string>
-    <string name="cerrarsesion">"Cerrar sesion "</string>
+    <string name="cerrarsesion">"Cerrar sesion. "</string>
+    <string name="validar_email">Validar email.</string>
+    <string name="validar_telefono">Validar telefono.</string>
+    <string name="borrar_cuenta">Borrar cuenta.</string>
+    <string name="boton_menu_abrir">Abrir.</string>
+    <string name="boton_menu_cerrar">Cerrar.</string>
 </resources>

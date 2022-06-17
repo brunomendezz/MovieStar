@@ -1,40 +1,73 @@
 package com.prueba1.empresatelefoniaandroid
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
-import android.text.TextUtils.indexOf
-import android.view.ViewGroup
-import android.widget.*
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toolbar
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.crashlytics.CrashlyticsRegistrar
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.prueba1.empresatelefoniaandroid.databinding.ActivityMainBinding
 import com.prueba1.empresatelefoniaandroid.databinding.ClienteEncontradoBinding
 import com.prueba1.empresatelefoniaandroid.databinding.FragmentAgregarClienteBinding
 import com.prueba1.empresatelefoniaandroid.databinding.FragmentBuscarClienteBinding
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var mainBinding: ActivityMainBinding
-    //private var mFirebaseAnalytics: FirebaseAnalytics? = null
+    private lateinit var mFirebaseCrashlyticsRegistrar: FirebaseCrashlytics
+    private lateinit var drawer: DrawerLayout
+    private lateinit var toggle: ActionBarDrawerToggle
+
 
     @SuppressLint("ResourceType", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //  mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_main)
+        setSupportActionBar(toolbar)
+        drawer = findViewById(R.layout.drawle_layoutmenu)
+        toggle = ActionBarDrawerToggle(
+            this,
+            drawer,
+            toolbar,
+            R.string.boton_menu_abrir,
+            R.string.boton_menu_cerrar
+        )
+        drawer.addDrawerListener(toggle)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+
+        val navigationView= findViewById<NavigationView>(R.id.vista_nav)
+        navigationView.setNavigationItemSelectedListener(this)
+
 
 // OPCION AGREGAR CLIENTE
 
         mainBinding.agregarCliente.setOnClickListener {
             val addClientBinding = FragmentAgregarClienteBinding.inflate(layoutInflater)
             setContentView(addClientBinding.root)
+            mFirebaseCrashlyticsRegistrar.log("agregar cliente")
 //BOTON CANCELAR DE AGREGAR CLIENTE
 
             addClientBinding.botoncancelar1.setOnClickListener {
@@ -162,7 +195,7 @@ class MainActivity : AppCompatActivity() {
 
         //OPCION CERRAR SESION
 
-        mainBinding.botoncerrarsesion.setOnClickListener{
+        mainBinding.botoncerrarsesion.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             createSignInIntent()
         }
@@ -175,19 +208,16 @@ class MainActivity : AppCompatActivity() {
             android.os.Process.killProcess(android.os.Process.myPid())
         }
 
-        if(FirebaseAuth.getInstance().currentUser!=null){
-            Toast.makeText(this, "Bienvenido ${FirebaseAuth.getInstance().currentUser?.displayName}", Toast.LENGTH_LONG)
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            Toast.makeText(
+                this,
+                "Bienvenido ${FirebaseAuth.getInstance().currentUser?.displayName}",
+                Toast.LENGTH_LONG
+            )
                 .show()
-
-            //.indexOf("@",0,false)
-            //              ?.let { FirebaseAuth.getInstance().currentUser?.email?.substring(0, it) }}", Toast.LENGTH_LONG)
-            //                .show()  ESTO QUISE HACER PERO CRASHEA :P
-
-        }else{
+        } else {
             createSignInIntent()
         }
-
-
 
 
     }
@@ -205,7 +235,7 @@ class MainActivity : AppCompatActivity() {
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
-         //   .setLogo(R.drawable.my_great_logo) // Set logo drawable
+            //   .setLogo(R.drawable.my_great_logo) // Set logo drawable
             .setTheme(com.firebase.ui.auth.R.style.Base_Theme_MaterialComponents_Light_DarkActionBar) // Set theme
             .build()
         signInLauncher.launch(signInIntent)
@@ -225,12 +255,16 @@ class MainActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
-            Toast.makeText(this, "Bienvenido ${user?.displayName}", Toast.LENGTH_LONG)
-                .show()
 
+            if (user != null) {
+                Toast.makeText(this, "Bienvenido ${user?.displayName}", Toast.LENGTH_LONG)
+                    .show()
+
+            }
         } else {
             Toast.makeText(this, "NO SE HA PODIDO INICIAR SESION", Toast.LENGTH_LONG)
                 .show()
+            createSignInIntent()
         }
 
 
@@ -240,6 +274,47 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rvListaDeClientes)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = Adapter(ClientManager().obtenerListaDeClientes())
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.validarEmail -> {
+                Toast.makeText(this, "Bienvenido", Toast.LENGTH_LONG)
+                    .show()
+
+
+            }
+            R.id.validarTelefono -> {      Toast.makeText(this, "Bienvenido", Toast.LENGTH_LONG)
+                .show()}
+
+            R.id.borrar_cuenta -> {      Toast.makeText(this, "Bienvenido", Toast.LENGTH_LONG)
+                .show()}
+
+        }
+
+        drawer.closeDrawer(GravityCompat.START)
+        return true
+
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        toggle.syncState()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        toggle.onConfigurationChanged(newConfig)
+
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+
     }
 
 
