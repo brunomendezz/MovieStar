@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
+
+
+
         <item
             android:id="@+id/validarEmail"
             android:icon="@drawable/fui_ic_mail_white_24dp"
@@ -13,6 +16,10 @@
             android:id="@+id/borrar_cuenta"
             android:icon="@drawable/fui_ic_anonymous_white_24dp"
             android:title="@string/borrar_cuenta" />
+        <item
+            android:id="@+id/cerrarSesion"
+            android:icon="@drawable/common_full_open_on_phone"
+            android:title="@string/cerrarsesion" />
     </group>
 
 

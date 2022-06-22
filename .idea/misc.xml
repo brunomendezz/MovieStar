@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tomy8/.gradle/caches/transforms-3/e7a498df37d469ef3f254da2a0aaa220/transformed/firebase-ui-auth-8.0.1/res/drawable/fui_ic_mail_white_24dp.xml" value="0.108" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/layout-v23/nav_header_main.xml" value="0.33" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/layout/activity_agregar_cliente.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -21,6 +22,12 @@
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/layout/nav_header_main.xml" value="0.36186594202898553" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/menu/menu.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/menu/menu_main.xml" value="0.3625" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/app_bar_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/drawle_layoutmenu.xml" value="0.33" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/fragment_agregar_cliente.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/nav_header_main.xml" value="0.33" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/menu/menu.xml" value="0.31296296296296294" />
       </map>
     </option>
   </component>

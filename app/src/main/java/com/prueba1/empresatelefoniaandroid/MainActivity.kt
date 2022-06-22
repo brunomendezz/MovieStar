@@ -4,12 +4,9 @@ import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toolbar
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -21,7 +18,6 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.prueba1.empresatelefoniaandroid.databinding.ActivityMainBinding
 import com.prueba1.empresatelefoniaandroid.databinding.ClienteEncontradoBinding
 import com.prueba1.empresatelefoniaandroid.databinding.FragmentAgregarClienteBinding
@@ -30,7 +26,6 @@ import com.prueba1.empresatelefoniaandroid.databinding.FragmentBuscarClienteBind
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var mainBinding: ActivityMainBinding
-    private lateinit var mFirebaseCrashlyticsRegistrar: FirebaseCrashlytics
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
 
@@ -39,13 +34,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //  mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
 
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_main)
         setSupportActionBar(toolbar)
-        drawer = findViewById(R.layout.drawle_layoutmenu)
+        drawer = findViewById(R.id.layout_drawer)
         toggle = ActionBarDrawerToggle(
             this,
             drawer,
@@ -58,8 +52,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-        val navigationView= findViewById<NavigationView>(R.id.vista_nav)
+        val navigationView = findViewById<NavigationView>(R.id.vista_nav)
         navigationView.setNavigationItemSelectedListener(this)
+
+        actionBar?.hide();
+
+        val nombreMenu = findViewById<TextView>(R.id.nombreCompleto)
+        nombreMenu?.text = "hola"
 
 
 // OPCION AGREGAR CLIENTE
@@ -67,7 +66,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mainBinding.agregarCliente.setOnClickListener {
             val addClientBinding = FragmentAgregarClienteBinding.inflate(layoutInflater)
             setContentView(addClientBinding.root)
-            mFirebaseCrashlyticsRegistrar.log("agregar cliente")
 //BOTON CANCELAR DE AGREGAR CLIENTE
 
             addClientBinding.botoncancelar1.setOnClickListener {
@@ -193,12 +191,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        //OPCION CERRAR SESION
-
-        mainBinding.botoncerrarsesion.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            createSignInIntent()
-        }
 
         //OPCION SALIR
 
@@ -217,6 +209,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .show()
         } else {
             createSignInIntent()
+
+
         }
 
 
@@ -264,7 +258,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             Toast.makeText(this, "NO SE HA PODIDO INICIAR SESION", Toast.LENGTH_LONG)
                 .show()
-            createSignInIntent()
+
         }
 
 
@@ -279,16 +273,47 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.validarEmail -> {
-                Toast.makeText(this, "Bienvenido", Toast.LENGTH_LONG)
-                    .show()
+
+                val user = FirebaseAuth.getInstance().currentUser
+                user?.sendEmailVerification()
+                if (user != null) {
+                    if(user.isEmailVerified){
+                        Toast.makeText(this, "Tu email ya ha sido verificado", Toast.LENGTH_LONG)
+                            .show()
+                    }else{   Toast.makeText(
+                        this,
+                        "Te hemos enviado un correo a ${user?.email}",
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+
+                    }
+                }else{
+                    Toast.makeText(this, "Debe iniciar sesion con algun email para poder validarlo", Toast.LENGTH_LONG)
+                        .show()
+                }
+
+
 
 
             }
-            R.id.validarTelefono -> {      Toast.makeText(this, "Bienvenido", Toast.LENGTH_LONG)
-                .show()}
+            R.id.validarTelefono -> {
+                Toast.makeText(this, "Bienvenido", Toast.LENGTH_LONG)
+                    .show()
+            }
 
-            R.id.borrar_cuenta -> {      Toast.makeText(this, "Bienvenido", Toast.LENGTH_LONG)
-                .show()}
+            R.id.borrar_cuenta -> {
+                AuthUI.getInstance()
+                    .delete(this)
+                createSignInIntent()
+                Toast.makeText(this, "Se ha eliminado tu cuenta", Toast.LENGTH_LONG)
+                    .show()
+            }
+
+            R.id.cerrarSesion -> {
+                FirebaseAuth.getInstance().signOut()
+                createSignInIntent()
+            }
 
         }
 

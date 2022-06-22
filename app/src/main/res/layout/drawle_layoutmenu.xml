@@ -18,7 +18,7 @@
     <include
         layout="@layout/app_bar_menu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/vista_nav"
@@ -29,6 +29,6 @@
             app:menu="@menu/menu"/>
 
 
-    </include>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
