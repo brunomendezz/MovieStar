@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frag_agregarCliente"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondollenardatos"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    app:navGraph="@navigation/nav_graph">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:background="#00AAE4"
+        android:fontFamily="@font/chewy"
+        android:gravity="center"
+        android:text="MovieStar"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="38sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/completarDatos"
+        android:layout_width="290dp"
+        android:layout_height="104dp"
+        android:gravity="center"
+        android:text="@string/complete_los_datos_por_favor"
+        android:shadowColor="@color/black"
+        android:shadowRadius="12"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.263"
+        tools:background="#00454242"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/botonregistrar1"
+        android:layout_width="173dp"
+        android:layout_height="71dp"
+        android:backgroundTint="#00AAE4"
+        android:padding="5dp"
+        android:fontFamily="@font/chewy"
+        android:shadowColor="@color/black"
+        android:shadowRadius="6"
+        android:textSize="15sp"
+        android:text="@string/registrar"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botoncancelar1"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.794" />
+
+    <Button
+        android:id="@+id/botoncancelar1"
+        android:layout_width="173dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#00AAE4"
+        android:padding="5dp"
+        android:fontFamily="@font/chewy"
+        android:shadowColor="@color/black"
+        android:shadowRadius="6"
+        android:textSize="15sp"
+        android:text="@string/cancelar"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.794" />
+
+    <EditText
+        android:id="@+id/nombre"
+        android:layout_width="271dp"
+        android:layout_height="48dp"
+        android:autofillHints=""
+        android:background="#A4FFFFFF"
+        android:hint="@string/nombre"
+        android:inputType="textPersonName|text"
+        android:textColor="#0E0E0E"
+        android:textColorHint="#A4000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465" />
+
+    <EditText
+        android:id="@+id/apellido"
+        android:layout_width="271dp"
+        android:layout_height="48dp"
+        android:autofillHints=""
+        android:background="#A4FFFFFF"
+        android:hint="@string/apellido"
+        android:inputType="textPersonName"
+        android:textColor="#0E0E0E"
+        android:textColorHint="#A4000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.548" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

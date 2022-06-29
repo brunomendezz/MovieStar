@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondollenardatos"
+    android:orientation="vertical"
+    android:id="@+id/frag_buscar_clientes"
+    app:layout_constraintTop_toTopOf="parent"
+    app:navGraph="@navigation/nav_graph"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:background="#00AAE4"
+        android:fontFamily="@font/chewy"
+        android:gravity="center"
+        android:text="MovieStar"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="38sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/idabuscar"
+        android:layout_width="271dp"
+        android:layout_height="48dp"
+        android:autofillHints=""
+
+        android:background="#B5FFFFFF"
+        android:hint="@string/ingrese_id_del_cliente"
+        android:inputType="textPersonName|text"
+        android:textColor="#0E0E0E"
+        android:textColorHint="#A4000000"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
+
+    <Button
+        android:id="@+id/botoncancelar2"
+        android:layout_width="173dp"
+        android:layout_height="71dp"
+        android:backgroundTint="#00AAE4"
+        android:padding="5dp"
+        android:fontFamily="@font/chewy"
+        android:shadowColor="@color/black"
+        android:shadowRadius="6"
+        android:textSize="15sp"
+        android:text="@string/cancelar"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <Button
+        android:id="@+id/botonbuscar2"
+        android:layout_width="173dp"
+        android:layout_height="71dp"
+        android:backgroundTint="#00AAE4"
+        android:padding="5dp"
+        android:fontFamily="@font/chewy"
+        android:shadowColor="@color/black"
+        android:shadowRadius="6"
+        android:textSize="15sp"
+        android:text="@string/botonbuscar"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <TextView
+        android:id="@+id/completarDatos"
+        android:layout_width="290dp"
+        android:layout_height="104dp"
+        android:gravity="center"
+        android:shadowColor="@color/black"
+        android:shadowRadius="12"
+        android:text="@string/complete_los_datos_por_favor"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.181"
+        tools:background="#00454242"
+        tools:ignore="TextContrastCheck" />
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="390dp"
+        android:layout_height="195dp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.966">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListaDeClientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B5FFFFFF" />
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
