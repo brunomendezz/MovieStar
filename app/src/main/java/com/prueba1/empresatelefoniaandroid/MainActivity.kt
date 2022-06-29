@@ -1,8 +1,10 @@
 package com.prueba1.empresatelefoniaandroid
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
@@ -11,6 +13,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.*
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.auth.AuthUI
@@ -18,10 +23,7 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.prueba1.empresatelefoniaandroid.databinding.ActivityMainBinding
-import com.prueba1.empresatelefoniaandroid.databinding.ClienteEncontradoBinding
-import com.prueba1.empresatelefoniaandroid.databinding.FragmentAgregarClienteBinding
-import com.prueba1.empresatelefoniaandroid.databinding.FragmentBuscarClienteBinding
+import com.prueba1.empresatelefoniaandroid.databinding.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -32,14 +34,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     @SuppressLint("ResourceType", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        //  mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
 
+
+        //BARRA DE NAVEGACION
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_main)
         setSupportActionBar(toolbar)
-        drawer = findViewById(R.id.layout_drawer)
+        drawer = findViewById(R.id.drawer_layout)
         toggle = ActionBarDrawerToggle(
             this,
             drawer,
@@ -49,6 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer.addDrawerListener(toggle)
 
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
@@ -56,149 +62,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
 
         actionBar?.hide();
-
-        val nombreMenu = findViewById<TextView>(R.id.nombreCompleto)
-        nombreMenu?.text = "hola"
-
-
-// OPCION AGREGAR CLIENTE
-
-        mainBinding.agregarCliente.setOnClickListener {
-            val addClientBinding = FragmentAgregarClienteBinding.inflate(layoutInflater)
-            setContentView(addClientBinding.root)
-//BOTON CANCELAR DE AGREGAR CLIENTE
-
-            addClientBinding.botoncancelar1.setOnClickListener {
-                setContentView(mainBinding.root)
-            }
-//BOTON REGISTRAR DE AGREGAR CLIENTE
-
-            addClientBinding.botonregistrar1.setOnClickListener {
-
-                val chequeoDeNoNumeros = { nombreOApellido: String ->
-                    nombreOApellido.forEach {
-                        if (it.isDigit())
-                            throw java.lang.RuntimeException("NO INGRESAR NUMEROS ,")
-                    }
-                }
-
-                try {
-                    val nombre = addClientBinding.nombre.text.toString()
-                    chequeoDeNoNumeros(nombre)
-                    //PARA QUE NO INGRESEN "ASD" POR EJEMPLO
-                    check(nombre.length >= 2)
-
-                    val apellido = addClientBinding.apellido.text.toString()
-                    chequeoDeNoNumeros(apellido)
-                    check(apellido.length >= 2)
-
-                    if (ClientManager().darDeAltaCliente(nombre, apellido)) {
-                        Toast.makeText(
-                            this,
-                            "El cliente se ha agregado correctamente",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        setContentView(mainBinding.root)
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "No se ha podido registrar el cliente, intente de nuevo",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    Toast.makeText(this, "INGRESE NOMBRE O APELLIDO VALIDO", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
-        }
-
-        //OPCION CONSULTAR COSTO DE UN CLIENTE POR ID
-
-        mainBinding.consultarCostoDeUnCliente.setOnClickListener {
-            val consutarCostoClienteBinding = FragmentBuscarClienteBinding.inflate(layoutInflater)
-            setContentView(consutarCostoClienteBinding.root)
-
-            initRecyclerView()
-
-            val nroDeClienteABuscar = consutarCostoClienteBinding.idabuscar
-
-            val chequeoDeQueSeaNumero = { nroClienteABuscar: String ->
-                nroClienteABuscar.forEach {
-                    if (!it.isDigit())
-
-                        throw java.lang.RuntimeException("INGRESE ID VALIDO")
-                }
-            }
-
-
-            //BOTON CANCELAR
-            consutarCostoClienteBinding.botoncancelar2.setOnClickListener {
-                setContentView(mainBinding.root)
-            }
-
-            //BOTON BUSCAR
-            consutarCostoClienteBinding.botonbuscar2.setOnClickListener {
-                try {
-                    val listaDeClientes = ClientManager().obtenerListaDeClientes()
-                    chequeoDeQueSeaNumero(nroDeClienteABuscar.text.toString())
-                    if (nroDeClienteABuscar.text.toString()
-                            .toInt() !in 0..listaDeClientes.size || nroDeClienteABuscar.text.equals(
-                            null
-                        )
-                    ) {
-                        Toast.makeText(
-                            this,
-                            "ESE ID DE CLIENTE NO EXISTE",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    } else {
-                        setContentView(R.layout.cliente_encontrado)
-                        val costotalDelCliente =
-                            findViewById<TextView>(R.id.costotaldelcliente)
-                        costotalDelCliente.text = "EL COSTO TOTAL DEL CLIENTE ES:$ ${
-                            CallsManager().costoDeLlamada(
-                                nroDeClienteABuscar.text.toString().toInt()
-                            )
-                        }"
-                        val botonVolver = findViewById<Button>(R.id.botonVolver)
-                        botonVolver.setOnClickListener {
-                            setContentView(mainBinding.root)
-                        }
-                    }
-
-
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    Toast.makeText(this, "INGRESE UN ID VALIDO", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-        }
-
-
-        //OPCION OBTENER COSTO TOTAL DE TODOS LOS CLIENTES
-        mainBinding.consultarCostoTotal.setOnClickListener {
-            val costoTotalBinding = ClienteEncontradoBinding.inflate(layoutInflater)
-            setContentView(costoTotalBinding.root)
-            costoTotalBinding.costotaldelcliente.text =
-                "EL COSTO TOTAL DE LOS CLIENTES ES: $${CallsManager().costoTotalDeLosClientes()}"
-            costoTotalBinding.botonVolver.setOnClickListener {
-                setContentView(mainBinding.root)
-            }
-        }
-
-
-        //OPCION SALIR
-
-
-        mainBinding.botonsalir.setOnClickListener {
-            finish()
-            android.os.Process.killProcess(android.os.Process.myPid())
-        }
 
         if (FirebaseAuth.getInstance().currentUser != null) {
             Toast.makeText(
@@ -212,7 +75,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         }
-
 
     }
 
@@ -262,12 +124,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-    }
-
-    private fun initRecyclerView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.rvListaDeClientes)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = Adapter(ClientManager().obtenerListaDeClientes())
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

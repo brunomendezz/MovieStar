@@ -22,11 +22,21 @@
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/layout/nav_header_main.xml" value="0.36186594202898553" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/menu/menu.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/EmpresaTelefoniaAndroid/app/src/main/res/menu/menu_main.xml" value="0.3625" />
-        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/app_bar_menu.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/drawle_layoutmenu.xml" value="0.33" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/cliente_encontrado.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/content_main.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/drawle_layoutmenu.xml" value="0.1" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/fragment_agregar_cliente.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/fragment_agregar_clientes.xml" value="0.1" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/fragment_buscar_cliente.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/fragment_buscar_clientes.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/fragment_clientes_encontrados.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/fragment_pantalla_principal.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/itemlist.xml" value="0.2973708068902992" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/nav_header_main.xml" value="0.33" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/nav_host.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/layout/pantalla_principal.xml" value="0.34148550724637683" />
         <entry key="..\:/Users/tomy8/AndroidStudioProjects/MovieStar/app/src/main/res/menu/menu.xml" value="0.31296296296296294" />
       </map>
     </option>

@@ -3,26 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/pantallaPrincipal">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.prueba1.empresatelefoniaandroid.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/agregarClientes"
+        android:name="com.prueba1.empresatelefoniaandroid.AgregarClientesFragment"
+        android:label="fragment_agregar_clientes"
+        tools:layout="@layout/fragment_agregar_clientes" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_agregarClientes_to_pantallaPrincipal"
+            app:destination="@id/pantallaPrincipal" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.prueba1.empresatelefoniaandroid.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/buscarClientes"
+        android:name="com.prueba1.empresatelefoniaandroid.BuscarClientesFragment"
+        android:label="fragment_buscar_clientes"
+        tools:layout="@layout/fragment_buscar_clientes" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_buscarClientes_to_pantallaPrincipal"
+            app:destination="@id/pantallaPrincipal" />
+        <action
+            android:id="@+id/action_buscarClientes_to_clientesEncontrados"
+            app:destination="@id/clientesEncontrados" />
     </fragment>
+    <fragment
+        android:id="@+id/clientesEncontrados"
+        android:name="com.prueba1.empresatelefoniaandroid.ClientesEncontradosFragment"
+        android:label="fragment_clientes_encontrados"
+        tools:layout="@layout/fragment_clientes_encontrados" >
+        <action
+            android:id="@+id/action_clientesEncontrados_to_buscarClientes"
+            app:destination="@id/buscarClientes" />
+        <action
+            android:id="@+id/action_clientesEncontrados_to_pantallaPrincipal"
+            app:destination="@id/pantallaPrincipal" />
+        <argument
+            android:name="idABuscar"
+            app:argType="integer"
+            android:defaultValue="1000000000" />
+    </fragment>
+    <fragment
+        android:id="@+id/pantallaPrincipal"
+        android:name="com.prueba1.empresatelefoniaandroid.PantallaPrincipalFragment"
+        android:label="fragment_pantalla_principal"
+        tools:layout="@layout/fragment_pantalla_principal" >
+        <action
+            android:id="@+id/action_pantallaPrincipal_to_agregarClientes"
+            app:destination="@id/agregarClientes" />
+        <action
+            android:id="@+id/action_pantallaPrincipal_to_buscarClientes"
+            app:destination="@id/buscarClientes" />
+        <action
+            android:id="@+id/action_pantallaPrincipal_to_clientesEncontrados"
+            app:destination="@id/clientesEncontrados" />
+    </fragment>
+
 </navigation>
